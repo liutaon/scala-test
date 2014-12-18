@@ -1,14 +1,11 @@
-name := """scala-test"""
+import play.Play.autoImport._
+import PlayKeys._
+import play.twirl.sbt.Import.TwirlKeys
 
-version := "1.0-SNAPSHOT"
-
-lazy val root = (project in file(".")).enablePlugins(PlayScala)
-
-scalaVersion := "2.11.4"
+Common.init("scala-test")
 
 libraryDependencies ++= Seq(
-  jdbc,
-  anorm,
-  cache,
-  ws
+  Deps.jdbc, Deps.slick, Deps.mysql, Deps.jodamoney, Deps.jodatime, Deps.redis
 )
+
+lazy val root = (project in file(".")).enablePlugins(PlayScala)
