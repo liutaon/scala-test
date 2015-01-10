@@ -40,6 +40,7 @@ object Deps {
   val mailer = "com.typesafe.play.plugins" %% "play-plugins-mailer" % "2.3.0"
   val commonsio = "commons-io" % "commons-io" % "2.4"
   val redis =   "com.etaty.rediscala" %% "rediscala" % "1.4.2"
+  val poi = "org.apache.poi" % "poi" % "3.11"
   // test
   val scalacheck = "org.scalacheck" %% "scalacheck" % "1.11.5" % "test"
 }
