@@ -74,6 +74,7 @@ object Main extends App {
     redis.zadd("demo.sorted.set", (1, "09123"))
     redis.zincrby("demo.sorted.set", 10, "09123")
     redis.zrange("demo.sorted.set", 0, 10).map { s => println("demo.sorted.set=" + s.map(_.utf8String)) }
+    redis.zrevrange("demo.sorted.set", 0, 10).map { s => println("demo.sorted.set.rev=" + s.map(_.utf8String)) }
   }
   
   // 测试 Key
