@@ -46,6 +46,8 @@ object Deps {
   val poi = "org.apache.poi" % "poi" % "3.11"
   val redis =   "com.etaty.rediscala" %% "rediscala" % "1.4.2"
   val redisclient = "net.debasishg" %% "redisclient" % "2.14"
+  val colossus = "com.tumblr" %% "colossus" % "0.5.1"
+  val finagle = "com.twitter" %% "finagle-http" % "6.24.0"
   // test
   val scalacheck = "org.scalacheck" %% "scalacheck" % "1.12.2" % "test"
 }
