@@ -124,6 +124,7 @@ public class BusinessPlan {
 		}
 		// freeze the first row
 		sheet.createFreezePane(0, 1);
+		
 
 		Row row;
 		Cell cell;
@@ -218,6 +219,7 @@ public class BusinessPlan {
 		style = createBorderedStyle(wb);
 		style.setAlignment(CellStyle.ALIGN_CENTER);
 		style.setFillForegroundColor(IndexedColors.LIGHT_CORNFLOWER_BLUE.getIndex());
+//		style.setFillBackgroundColor(IndexedColors.LIGHT_CORNFLOWER_BLUE.getIndex());
 		style.setFillPattern(CellStyle.SOLID_FOREGROUND);
 		style.setFont(headerFont);
 		styles.put("header", style);
@@ -248,6 +250,8 @@ public class BusinessPlan {
 		style.setDataFormat(df.getFormat("d-mmm"));
 		styles.put("cell_b_date", style);
 
+		style.setBottomBorderColor(IndexedColors.AQUA.index);
+		
 		style = createBorderedStyle(wb);
 		style.setAlignment(CellStyle.ALIGN_RIGHT);
 		style.setFont(font1);
