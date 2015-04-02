@@ -49,6 +49,7 @@ object Deps {
   val colossus = "com.tumblr" %% "colossus" % "0.5.1"
   val finagle = "com.twitter" %% "finagle-http" % "6.24.0"
   val json4s = "org.json4s" %% "json4s-native" % "3.2.11"
+  val hikaricp = "com.edulify" %% "play-hikaricp" % "2.0.1"
   // test
   val scalacheck = "org.scalacheck" %% "scalacheck" % "1.12.2" % "test"
 }
