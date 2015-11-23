@@ -10,23 +10,18 @@ object Common {
     scalaVersion := Deps.ScalaVersion,
     // logLevel := Level.Debug,
     incOptions := incOptions.value.withNameHashing(true),
-    libraryDependencies ++= Seq(Deps.scalacheck),
+    // libraryDependencies ++= Seq(Deps.scalacheck),
     javacOptions ++= Seq("-encoding", "UTF-8"),
     scalacOptions ++= Seq("-feature", "-language:reflectiveCalls", "-deprecation", "-encoding", "UTF-8"),
     EclipseKeys.skipParents in ThisBuild := false,
     sources in (Compile, doc) := Seq.empty,
     publishArtifact in (Compile, packageDoc) := false
   )
-
-  def recursiveListFiles(f: File): Seq[File] = {
-    val files = Option(f.listFiles).toSeq.flatten
-    files ++ files.filter(_.isDirectory).flatMap(recursiveListFiles)
-  }
 }
 
 object Deps {
-  val PlayVersion = "2.3.8"
-  val ScalaVersion = "2.11.6"
+  val PlayVersion = "2.3.10"
+  val ScalaVersion = "2.11.7"
   // common
   val play = "com.typesafe.play" %% "play" % PlayVersion
   val jdbc = "com.typesafe.play" %% "play-jdbc" % PlayVersion
@@ -50,6 +45,8 @@ object Deps {
   val finagle = "com.twitter" %% "finagle-http" % "6.24.0"
   val json4s = "org.json4s" %% "json4s-native" % "3.2.11"
   val hikaricp = "com.edulify" %% "play-hikaricp" % "2.0.1"
+  val qrgen = "net.glxn.qrgen" % "javase" % "2.0"
+  val barcode = "net.sf.barcode4j" % "barcode4j" % "2.1"
   // test
   val scalacheck = "org.scalacheck" %% "scalacheck" % "1.12.2" % "test"
 }
