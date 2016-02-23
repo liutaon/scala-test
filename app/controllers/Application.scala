@@ -1,15 +1,17 @@
 package controllers
 
-import com.google.zxing.BarcodeFormat
 import com.google.zxing.client.j2se.MatrixToImageWriter
-import com.google.zxing.oned.EAN13Writer
+import com.google.zxing.oned.Code128Writer
 import com.google.zxing.qrcode.QRCodeWriter
+import com.google.zxing.{BarcodeFormat, EncodeHintType}
 import play.api.libs.iteratee.Enumerator
 import play.api.mvc._
 
+import scala.collection.JavaConversions._
 import scala.concurrent.ExecutionContext.Implicits.global
 
 object Application extends Controller {
+  val QRHints = Map(EncodeHintType.CHARACTER_SET -> "UTF-8", EncodeHintType.MARGIN -> 0)
 
   def index = Action {
     Ok(views.html.index("Your new application is ready."))
@@ -18,7 +20,7 @@ object Application extends Controller {
   def qrcode = Action { implicit req =>
     req.getQueryString("code") match {
       case Some(code) =>
-        val writer = new QRCodeWriter().encode(code, BarcodeFormat.QR_CODE, 250, 250)
+        val writer = new QRCodeWriter().encode(code, BarcodeFormat.QR_CODE, 250, 250, QRHints)
         val data = Enumerator.outputStream { out =>
           MatrixToImageWriter.writeToStream(writer, "png", out)
           out.close()
@@ -31,8 +33,7 @@ object Application extends Controller {
   def barcode = Action { implicit req =>
     req.getQueryString("code") match {
       case Some(code) =>
-        val text = code + checksum(code)
-        val bitMatrix = new EAN13Writer().encode(text, BarcodeFormat.EAN_13, 200, 100)
+        val bitMatrix = new Code128Writer().encode(code, BarcodeFormat.CODE_128, 250, 100, QRHints)
         val data = Enumerator.outputStream { out =>
           MatrixToImageWriter.writeToStream(bitMatrix, "png", out)
           out.close()
